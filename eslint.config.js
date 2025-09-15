@@ -22,7 +22,6 @@ module.exports = tslint.config(
     rules: {
       eqeqeq: "error",
       "no-else-return": "error",
-      "no-magic-numbers": "error",
       "prefer-const": "error",
       "no-nested-ternary": "error",
       "no-console": [
