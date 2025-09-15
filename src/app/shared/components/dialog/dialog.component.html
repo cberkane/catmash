@@ -1,0 +1,11 @@
+<dialog class="dialog" #dialogRef (close)="onClose()">
+    <header class="dialog-header">
+        <h2>{{ title }}</h2>
+        <button (click)="close()" class="close-button">
+            <svg-icon src="assets/svg/close.svg" [svgStyle]="{ width: '16px', height: '16px' }"></svg-icon>
+        </button>
+    </header>
+    <section>
+        <ng-content></ng-content>
+    </section>
+</dialog>

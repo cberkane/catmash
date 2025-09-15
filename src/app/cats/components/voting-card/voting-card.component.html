@@ -4,11 +4,22 @@
     }
     <img
         class="vote-card-image"
-        [ngClass]="{ 'hidden': !isImageLoaded }"
+        [ngClass]="{ hidden: !isImageLoaded }"
         [src]="imageUrl"
         (load)="onImageLoad()"
         alt="{{ label }}"
     />
     <span class="vote-card-label">{{ label }}</span>
     <app-button (clicked)="onVote($event)">Vote</app-button>
+    <button class="dialog-button" (click)="showDialog = true">
+        <svg-icon src="assets/svg/maximize.svg" [svgStyle]="{ width: '18px', height: '18px', color: 'white' }"></svg-icon>
+    </button>
 </div>
+
+<app-dialog
+    [open]="showDialog"
+    [title]="label"
+    (closed)="showDialog = false"
+>
+    <img  class="dialog-image" [src]="imageUrl" alt="Cat Image" />
+</app-dialog>
