@@ -1,0 +1,41 @@
+@import "_variables";
+
+.vote-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    .vote-card-image {
+        width: 200px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid $color-primary;
+        padding: 4px;
+
+        &.hidden {
+            display: none;
+        }
+    }
+
+    .skeleton-loader {
+        width: 200px;
+        aspect-ratio: 1;
+        border-radius: 8px;
+        background-color: $color-bg-alt;
+
+        animation: pulse 1.5s infinite;
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    }
+
+    .vote-card-label {
+        font-size: 14px;
+        font-weight: bold;
+        color: $color-primary-dark;
+    }
+}

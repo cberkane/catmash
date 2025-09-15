@@ -1,0 +1,14 @@
+<div class="vote-card">
+    @if (!isImageLoaded) {
+        <div class="skeleton-loader"></div>
+    }
+    <img
+        class="vote-card-image"
+        [ngClass]="{ 'hidden': !isImageLoaded }"
+        [src]="imageUrl"
+        (load)="onImageLoad()"
+        alt="{{ label }}"
+    />
+    <span class="vote-card-label">{{ label }}</span>
+    <app-button (clicked)="onVote($event)">Vote</app-button>
+</div>

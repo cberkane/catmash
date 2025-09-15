@@ -1,0 +1,15 @@
+@import "_variables";
+
+.content {
+    display: flex;
+
+    app-voting-card {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:first-child {
+            border-right: 1px dashed $color-primary;
+        }
+    }
+}

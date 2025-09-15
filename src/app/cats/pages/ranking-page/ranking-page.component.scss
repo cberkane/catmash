@@ -1,0 +1,48 @@
+.content {
+    .top-ranking,
+    .other-ranking {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    .top-ranking {
+        align-items: flex-end;
+        margin-bottom: 32px;
+
+        app-ranking-card {
+            box-sizing: border-box;
+            flex: 1 1 30%;
+            min-width: 220px;
+
+            &.first {
+                order: 2;
+            }
+            &.second {
+                order: 1;
+            }
+            &.third {
+                order: 3;
+            }
+
+            @media (max-width: 780px) {
+                flex: 1 1 100%;
+
+                &.first,
+                &.second,
+                &.third {
+                    order: initial;
+                }
+            }
+        }
+    }
+
+    .other-ranking {
+        app-ranking-card {
+            flex: 1 1 calc(25% - 12px);
+            min-width: 160px;
+            box-sizing: border-box;
+        }
+    }
+}

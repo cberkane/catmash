@@ -2,13 +2,16 @@ import { Component, OnInit, inject } from "@angular/core";
 
 import { CatService } from "@src/app/cats/services/cat.service";
 import { Cat, CatMatch } from "@src/app/cats/types/cat";
+import { VotingCardComponent } from "../../components/voting-card/voting-card.component";
 
 @Component({
   standalone: true,
   selector: "app-voting-page",
   templateUrl: "./voting-page.component.html",
   styleUrl: "./voting-page.component.scss",
-  imports: [],
+  imports: [
+    VotingCardComponent,
+  ],
 })
 export class VotingPageComponent implements OnInit {
   catService = inject(CatService);

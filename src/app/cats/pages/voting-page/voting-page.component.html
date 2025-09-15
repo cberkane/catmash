@@ -1,14 +1,20 @@
 <section class="page-container">
-    <div class="page-content">
+    <div class="page-content content">
         @if(loading) {
             <p>Loading cats...</p>
         } @else if (error) {
             <p class="error-message">{{ error }}</p>
         } @else {
-            <p>Cat 1: {{ cat1.id }}</p>
-            <button (click)="onVote({ winner: cat1, loser: cat2 })">Vote for Cat 1</button>
-            <p>Cat 2: {{ cat2.id }}</p>
-            <button (click)="onVote({ winner: cat2, loser: cat1 })">Vote for Cat 2</button>
+            <app-voting-card
+                [imageUrl]="cat1.imageUrl"
+                [label]="cat1.id"
+                (vote)="onVote({ winner: cat1, loser: cat2 })"
+            />
+            <app-voting-card
+                [imageUrl]="cat2.imageUrl"
+                [label]="cat2.id"
+                (vote)="onVote({ winner: cat2, loser: cat1 })"
+            />
         }
     </div>
 </section>
