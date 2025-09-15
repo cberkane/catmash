@@ -1,5 +1,5 @@
 <div class="bottom-nav" (click)="navigate()" (keydown.enter)="navigate()" tabindex="0">
-    <span class="nav-arrow">↑</span>
+    <svg-icon src="assets/svg/up.svg" [svgStyle]="{ 'width.px': 14, 'height.px': 14 }"></svg-icon>
     <p class="nav-button">{{ item.label }}</p>
     <span class="nav-info">{{ item.info }}</span>
 </div>
