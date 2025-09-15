@@ -1,0 +1,15 @@
+@import "_variables";
+
+.app-root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .app-header {
+        height: $header-height;
+    }
+
+    .app-container {
+        min-height: calc(100vh - $header-height);
+    }
+}

@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
+import { HeaderComponent } from "./shared/components/header/header.component";
 
 @Component({
   standalone: true,
@@ -7,7 +8,8 @@ import { RouterOutlet } from "@angular/router";
   templateUrl: "./app.component.html",
   styleUrl: "./app.component.scss",
   imports: [
-    RouterOutlet
+    HeaderComponent,
+    RouterOutlet,
   ],
 })
 export class AppComponent {}

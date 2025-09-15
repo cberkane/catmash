@@ -1,0 +1,36 @@
+@import '_variables';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: $color-bg;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Utilities */
+.page-container {
+  padding: 20px 32px;
+  margin: 0 auto;
+  max-width: $container-width;
+  min-height: calc((100vh - $header-height) - 1px);
+
+  display: flex;
+  flex-direction: column;
+  .page-content {  flex: 1 }
+}
