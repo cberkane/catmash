@@ -29,7 +29,6 @@ export class RankingPageComponent implements OnInit, OnDestroy {
   navItem: NavItem = {
     route: "/voting",
     label: "Retourner au vote",
-    info: "X parties jouées",
   };
 
   private subscription = new Subscription();
@@ -48,6 +47,7 @@ export class RankingPageComponent implements OnInit, OnDestroy {
       next: (ranking) => {
         this.cats = ranking;
         this.loading = false;
+        this.navItem.info = `${this.catService.getPlayedMatches()} parties jouées`;
       },
       error: (error) => {
         this.loading = false;

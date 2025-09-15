@@ -23,7 +23,6 @@ export class VotingPageComponent implements OnInit {
   navItem: NavItem = {
     route: "/ranking",
     label: "Voir le classement",
-    info: "X parties jouées",
   };
 
   ngOnInit(): void {
@@ -38,6 +37,7 @@ export class VotingPageComponent implements OnInit {
         this.cat1 = cat1;
         this.cat2 = cat2;
         this.loading = false;
+        this.navItem.info = `${this.catService.getPlayedMatches()} parties jouées`;
       },
       error: (err) => {
         this.loading = false;

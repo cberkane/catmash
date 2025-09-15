@@ -85,9 +85,23 @@ export class CatService {
         { catId: loser.id, appearedAt: new Date().toISOString() },
       ];
       await this.catStorage.updateCatAppearances(newAppearences);
+      this.countPlayedMatches();
     } catch (error) {
       console.error("Error recording vote:", error);
       throw new Error("Failed to register the vote. Please try again later.");
     }
+  }
+
+  getPlayedMatches(): number {
+    const playedMatches = localStorage.getItem("playedMatches");
+    return Number(playedMatches ?? "0");
+  }
+
+  private countPlayedMatches(): void {
+    const playedMatches = localStorage.getItem("playedMatches");
+    if (!playedMatches) localStorage.setItem("playedMatches", "0");
+
+    const count = parseInt(playedMatches ?? "0", 10) + 1;
+    localStorage.setItem("playedMatches", count.toString());
   }
 }
