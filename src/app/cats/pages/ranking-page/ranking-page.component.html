@@ -1,6 +1,15 @@
 <section class="page-container">
     <div class="page-content">
-        <h1>Cat Ranking</h1>
-        <p>This is where the cat ranking will be displayed.</p>
+        @if (loading) {
+            <p>Loading ranking...</p>
+        } @else if (error) {
+            <p class="error-message">{{ error }}</p>
+        } @else {
+            <ul>
+                @for (cat of ranking; track cat.id) {
+                    <li>Cat {{ cat.id }} - Score: {{ cat.score }}</li>
+                }
+            </ul>
+        }
     </div>
 </section>

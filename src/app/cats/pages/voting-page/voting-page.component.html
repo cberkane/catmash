@@ -1,6 +1,14 @@
 <section class="page-container">
     <div class="page-content">
-        <h1>Cat Voting</h1>
-        <p>This is where the cat voting will be displayed.</p>
+        @if(loading) {
+            <p>Loading cats...</p>
+        } @else if (error) {
+            <p class="error-message">{{ error }}</p>
+        } @else {
+            <p>Cat 1: {{ cat1.id }}</p>
+            <button (click)="onVote({ winner: cat1, loser: cat2 })">Vote for Cat 1</button>
+            <p>Cat 2: {{ cat2.id }}</p>
+            <button (click)="onVote({ winner: cat2, loser: cat1 })">Vote for Cat 2</button>
+        }
     </div>
 </section>
