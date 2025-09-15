@@ -4,6 +4,7 @@ import { VotingCardComponent } from "@src/app/cats/components/voting-card/voting
 import { CatService } from "@src/app/cats/services/cat.service";
 import { Cat, CatMatch } from "@src/app/cats/types/cat";
 import { BottomNavComponent } from "@src/app/shared/components/bottom-nav/bottom-nav.component";
+import { StateWrapperComponent } from "@src/app/shared/components/state-wrapper/state-wrapper.component";
 import { NavItem } from "@src/app/shared/types/nav-item";
 
 @Component({
@@ -11,7 +12,7 @@ import { NavItem } from "@src/app/shared/types/nav-item";
   selector: "app-voting-page",
   templateUrl: "./voting-page.component.html",
   styleUrl: "./voting-page.component.scss",
-  imports: [VotingCardComponent, BottomNavComponent],
+  imports: [VotingCardComponent, BottomNavComponent, StateWrapperComponent],
 })
 export class VotingPageComponent implements OnInit {
   catService = inject(CatService);
@@ -36,13 +37,15 @@ export class VotingPageComponent implements OnInit {
       next: ([cat1, cat2]) => {
         this.cat1 = cat1;
         this.cat2 = cat2;
-        this.loading = false;
         this.navItem.info = `${this.catService.getPlayedMatches()} parties jouées`;
       },
       error: (err) => {
         this.loading = false;
         if (err instanceof Error) this.error = err.message;
         else this.error = "An unexpected error occurred. Please try again later.";
+      },
+      complete: () => {
+        this.loading = false;
       },
     });
   }

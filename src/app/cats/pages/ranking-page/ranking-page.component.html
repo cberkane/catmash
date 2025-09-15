@@ -1,33 +1,35 @@
-<section class="page-container">
-    <div class="page-content content">
-        @if (loading) {
-            <p>Loading rankings...</p>
-        } @else if (error) {
-            <p class="error-message">{{ error }}</p>
-        } @else {
-            <div class="top-ranking">
-                @for (cat of cats | slice:0:3; track cat.id; let i = $index) {
-                <app-ranking-card
-                    [label]="cat.id"
-                    [rank]="i + 1"
-                    [imageUrl]="cat.imageUrl"
-                    [score]="cat.score"
-                    [ngClass]="{ first: i === 0, second: i === 1, third: i === 2 }"
-                    [variant]="i === 0 ? 'first' : i === 1 ? 'second' : 'third'"
-                />
-                }
-            </div>
-            <div class="other-ranking">
-                @for (cat of cats | slice:3; track cat.id; let i = $index) {
-                <app-ranking-card
-                    [label]="cat.id"
-                    [rank]="i + 4"
-                    [imageUrl]="cat.imageUrl"
-                    [score]="cat.score"
-                />
-                }
-                <app-bottom-nav [item]="navItem" />
-            </div>
-        }
-    </div>
-</section>
+<app-state-wrapper [loading]="loading" [error]="error">
+    <section class="page-container">
+        <div class="page-content content">
+                @if (!loading && cats.length) {
+                <div class="top-ranking">
+                    @for (cat of cats | slice:0:3; track cat.id; let i = $index) {
+                    <app-ranking-card
+                        [label]="cat.id"
+                        [rank]="i + 1"
+                        [imageUrl]="cat.imageUrl"
+                        [score]="cat.score"
+                        [ngClass]="{
+                            first: i === 0,
+                            second: i === 1,
+                            third: i === 2
+                        }"
+                        [variant]="i === 0 ? 'first' : i === 1 ? 'second' : 'third'"
+                    />
+                    }
+                </div>
+                <div class="other-ranking">
+                    @for (cat of cats | slice:3; track cat.id; let i = $index) {
+                    <app-ranking-card
+                        [label]="cat.id"
+                        [rank]="i + 4"
+                        [imageUrl]="cat.imageUrl"
+                        [score]="cat.score"
+                    />
+                    }
+                    <app-bottom-nav [item]="navItem" />
+                </div>
+            }
+        </div>
+    </section>
+</app-state-wrapper>

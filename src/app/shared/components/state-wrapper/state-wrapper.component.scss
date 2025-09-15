@@ -1,0 +1,27 @@
+@import "_variables";
+
+.loading-container,
+.error-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-container .loading {
+    display: block;
+    margin: 0 auto;
+}
+
+.error-container {
+    flex-direction: column;
+    color: $color-error;
+
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+}

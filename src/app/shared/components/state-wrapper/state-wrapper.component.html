@@ -1,0 +1,12 @@
+@if (loading) {
+    <div class="loading-container">
+        <app-loading class="loading" size="2x" theme="dark" />
+    </div>
+} @else if (error) {
+    <div class="error-container">
+        <h1>Une erreur est survenue.</h1>
+        <p>{{ error }}</p>
+    </div>
+} @else {
+    <ng-content></ng-content>
+}

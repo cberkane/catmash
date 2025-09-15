@@ -6,6 +6,7 @@ import { RankingCardComponent } from "@src/app/cats/components/ranking-card/rank
 import { CatService } from "@src/app/cats/services/cat.service";
 import { Cat } from "@src/app/cats/types/cat";
 import { BottomNavComponent } from "@src/app/shared/components/bottom-nav/bottom-nav.component";
+import { StateWrapperComponent } from "@src/app/shared/components/state-wrapper/state-wrapper.component";
 import { NavItem } from "@src/app/shared/types/nav-item";
 
 @Component({
@@ -18,6 +19,7 @@ import { NavItem } from "@src/app/shared/types/nav-item";
     NgClass, 
     BottomNavComponent,
     RankingCardComponent, 
+    StateWrapperComponent,
   ],
 })
 export class RankingPageComponent implements OnInit, OnDestroy {

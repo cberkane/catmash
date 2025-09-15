@@ -1,10 +1,7 @@
-<section class="page-container">
-    <div class="page-content content">
-        @if(loading) {
-            <p>Loading cats...</p>
-        } @else if (error) {
-            <p class="error-message">{{ error }}</p>
-        } @else {
+<app-state-wrapper [loading]="loading" [error]="error">
+    <section class="page-container">
+        <div class="page-content content">
+            @if (!loading && cat1 && cat2) {
             <app-voting-card
                 [imageUrl]="cat1.imageUrl"
                 [label]="cat1.id"
@@ -16,6 +13,7 @@
                 (vote)="onVote({ winner: cat2, loser: cat1 })"
             />
             <app-bottom-nav [item]="navItem" />
-        }
-    </div>
-</section>
+            }
+        </div>
+    </section>
+</app-state-wrapper>
