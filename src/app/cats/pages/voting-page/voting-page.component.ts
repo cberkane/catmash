@@ -1,17 +1,17 @@
 import { Component, OnInit, inject } from "@angular/core";
 
+import { VotingCardComponent } from "@src/app/cats/components/voting-card/voting-card.component";
 import { CatService } from "@src/app/cats/services/cat.service";
 import { Cat, CatMatch } from "@src/app/cats/types/cat";
-import { VotingCardComponent } from "../../components/voting-card/voting-card.component";
+import { BottomNavComponent } from "@src/app/shared/components/bottom-nav/bottom-nav.component";
+import { NavItem } from "@src/app/shared/types/nav-item";
 
 @Component({
   standalone: true,
   selector: "app-voting-page",
   templateUrl: "./voting-page.component.html",
   styleUrl: "./voting-page.component.scss",
-  imports: [
-    VotingCardComponent,
-  ],
+  imports: [VotingCardComponent, BottomNavComponent],
 })
 export class VotingPageComponent implements OnInit {
   catService = inject(CatService);
@@ -20,6 +20,11 @@ export class VotingPageComponent implements OnInit {
   cat2: Cat;
   loading = false;
   error: string | null = null;
+  navItem: NavItem = {
+    route: "/ranking",
+    label: "Voir le classement",
+    info: "X parties jouées",
+  };
 
   ngOnInit(): void {
     this.loadNewOpponents();

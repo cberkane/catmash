@@ -1,10 +1,12 @@
-import { Component, inject, OnInit, OnDestroy } from "@angular/core";
 import { NgClass, SlicePipe } from "@angular/common";
+import { Component, inject, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 
-import { Cat } from "@src/app/cats/types/cat";
-import { CatService } from "@src/app/cats/services/cat.service";
 import { RankingCardComponent } from "@src/app/cats/components/ranking-card/ranking-card.component";
+import { CatService } from "@src/app/cats/services/cat.service";
+import { Cat } from "@src/app/cats/types/cat";
+import { BottomNavComponent } from "@src/app/shared/components/bottom-nav/bottom-nav.component";
+import { NavItem } from "@src/app/shared/types/nav-item";
 
 @Component({
   standalone: true,
@@ -12,9 +14,10 @@ import { RankingCardComponent } from "@src/app/cats/components/ranking-card/rank
   templateUrl: "./ranking-page.component.html",
   styleUrl: "./ranking-page.component.scss",
   imports: [
-    SlicePipe,
-    NgClass,
-    RankingCardComponent,
+    SlicePipe, 
+    NgClass, 
+    BottomNavComponent,
+    RankingCardComponent, 
   ],
 })
 export class RankingPageComponent implements OnInit, OnDestroy {
@@ -23,6 +26,11 @@ export class RankingPageComponent implements OnInit, OnDestroy {
   cats: Cat[];
   loading = false;
   error: string | null = null;
+  navItem: NavItem = {
+    route: "/voting",
+    label: "Retourner au vote",
+    info: "X parties jouées",
+  };
 
   private subscription = new Subscription();
 
