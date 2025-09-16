@@ -88,7 +88,7 @@ export class CatService {
       this.countPlayedMatches();
     } catch (error) {
       console.error("Error recording vote:", error);
-      throw new Error("Failed to register the vote. Please try again later.");
+      throw new Error("Enregistrement du vote échoué. Veuillez réessayer plus tard.");
     }
   }
 

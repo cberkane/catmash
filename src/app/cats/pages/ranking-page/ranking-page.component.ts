@@ -57,7 +57,7 @@ export class RankingPageComponent implements OnInit, OnDestroy {
       error: (error) => {
         this.loading = false;
         if (error instanceof Error) this.error = error.message;
-        else this.error = "An unexpected error occurred. Please try again later.";
+        else this.error = "Une erreur inattendue est survenue. Veuillez réessayer plus tard.";
       },
     });
   }

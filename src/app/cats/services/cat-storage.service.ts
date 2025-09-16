@@ -4,6 +4,7 @@ import { catchError, first, forkJoin, map, Observable, throwError } from "rxjs";
 import { collection, collectionData, CollectionReference, doc, Firestore, query, writeBatch, orderBy } from "@angular/fire/firestore";
 
 import { Cat, CatAppearance, CatRemoteData } from "@src/app/cats/types/cat";
+import { environment } from "@src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -12,7 +13,6 @@ export class CatStorageService {
   private firestore = inject(Firestore);
   private http = inject(HttpClient);
 
-  private catsDataUrl = "https://conseil.latelier.co/data/cats.json";
   private catsCollection = collection(this.firestore, "cats") as CollectionReference<Cat>;
   private appearancesCollection = collection(this.firestore, "cat_appearances") as CollectionReference<CatAppearance>;
 
@@ -20,9 +20,9 @@ export class CatStorageService {
    * Get cats data from remote source
    */
   fetchCatsData$(): Observable<CatRemoteData[]> {
-    return this.http.get<{ images: CatRemoteData[] }>(this.catsDataUrl).pipe(
+    return this.http.get<{ images: CatRemoteData[] }>(environment.remoteApiUrl).pipe(
       map((res) => res.images),
-      catchError(() => throwError(() => "An error occurred while fetching cats data from the remote source."))
+      catchError(() => throwError(() => new Error("Une erreur est survenue lors de la récupération des images.")))
     );
   }
 
@@ -33,7 +33,7 @@ export class CatStorageService {
     const request = query(this.catsCollection);
     return collectionData(request).pipe(
       first((res) => !!res),
-      catchError(() => throwError(() => new Error("An error occurred while fetching persisted cats.")))
+      catchError(() => throwError(() => new Error("Une erreur est survenue lors de la récupération des chats.")))
     );
   }
 
@@ -44,7 +44,7 @@ export class CatStorageService {
     const request = query(this.appearancesCollection, orderBy("appearedAt", "desc"));
     return collectionData(request).pipe(
       first((res) => !!res),
-      catchError(() => throwError(() => new Error("An error occurred while fetching cat last appearances.")))
+      catchError(() => throwError(() => new Error("Une erreur est survenue lors de la récupération de l'historique des matchs.")))
     );
   }
 
@@ -64,8 +64,9 @@ export class CatStorageService {
    * Merge cat data from remote source with persisted cats in Firestore
    */
   private mergeCats(remoteData: CatRemoteData[], persistedCats: Cat[]): Cat[] {
+    const catsMap = new Map(persistedCats.map(cat => [cat.id, cat]));
     return remoteData.map((data) => {
-      const match = persistedCats.find((c) => c.id === data.id);
+      const match = catsMap.get(data.id);
       if (match) return match;
 
       return {

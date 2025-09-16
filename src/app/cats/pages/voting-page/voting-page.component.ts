@@ -52,7 +52,7 @@ export class VotingPageComponent implements OnInit, OnDestroy {
       error: (err) => {
         this.loading = false;
         if (err instanceof Error) this.error = err.message;
-        else this.error = "An unexpected error occurred. Please try again later.";
+        else this.error = "Une erreur inattendue est survenue. Veuillez réessayer plus tard.";
       },
       complete: () => {
         this.loading = false;
