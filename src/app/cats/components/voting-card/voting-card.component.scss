@@ -1,4 +1,5 @@
 @import "_variables";
+@import "_mixins";
 
 .vote-card {
     display: flex;
@@ -24,20 +25,7 @@
         width: 200px;
         aspect-ratio: 1;
         border-radius: 8px;
-        background-color: $color-bg-alt;
-
-        animation: pulse 1.5s infinite;
-        @keyframes pulse {
-            0% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+        @include skeleton-loader;
     }
 
     .vote-card-label {
@@ -47,7 +35,6 @@
     }
 
     .dialog-button {
-        all: unset;
         cursor: pointer;
         position: absolute;
         top: 16px;

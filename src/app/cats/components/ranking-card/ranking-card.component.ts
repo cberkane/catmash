@@ -1,3 +1,4 @@
+import { NgClass } from "@angular/common";
 import { Component, Input } from "@angular/core";
 
 @Component({
@@ -5,7 +6,9 @@ import { Component, Input } from "@angular/core";
   selector: "app-ranking-card",
   templateUrl: "./ranking-card.component.html",
   styleUrl: "./ranking-card.component.scss",
-  imports: [],
+  imports: [
+    NgClass,
+  ],
 })
 export class RankingCardComponent {
   @Input() rank: number;
@@ -13,4 +16,10 @@ export class RankingCardComponent {
   @Input() imageUrl: string;
   @Input() score: number;
   @Input() variant?: "first" | "second" | "third";
+
+  isImageLoaded = false;
+
+  onImageLoad() {
+    this.isImageLoaded = true;
+  }
 }

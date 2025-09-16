@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, inject, OnDestroy } from "@angular/core";
 
 import { VotingCardComponent } from "@src/app/cats/components/voting-card/voting-card.component";
 import { CatService } from "@src/app/cats/services/cat.service";
@@ -6,6 +6,7 @@ import { Cat, CatMatch } from "@src/app/cats/types/cat";
 import { BottomNavComponent } from "@src/app/shared/components/bottom-nav/bottom-nav.component";
 import { StateWrapperComponent } from "@src/app/shared/components/state-wrapper/state-wrapper.component";
 import { NavItem } from "@src/app/shared/types/nav-item";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   standalone: true,
@@ -14,7 +15,7 @@ import { NavItem } from "@src/app/shared/types/nav-item";
   styleUrl: "./voting-page.component.scss",
   imports: [VotingCardComponent, BottomNavComponent, StateWrapperComponent],
 })
-export class VotingPageComponent implements OnInit {
+export class VotingPageComponent implements OnInit, OnDestroy {
   catService = inject(CatService);
 
   cat1: Cat;
@@ -26,14 +27,23 @@ export class VotingPageComponent implements OnInit {
     label: "Voir le classement",
   };
 
+  private destroy$ = new Subject<void>();
+
   ngOnInit(): void {
     this.loadNewOpponents();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   loadNewOpponents(): void {
     this.loading = true;
     this.error = null;
-    this.catService.selectCatOpponents$().subscribe({
+    this.catService.selectCatOpponents$()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: ([cat1, cat2]) => {
         this.cat1 = cat1;
         this.cat2 = cat2;

@@ -1,6 +1,15 @@
-<div class="ranking-card" [class]="variant">
-  <div class="ranking-card-rank">#{{ rank }}</div>
-  <img class="ranking-card-image" [src]="imageUrl" [alt]="label" />
-  <div class="ranking-card-label">{{ label }}</div>
-  <div class="ranking-card-score">Score: {{ score }} pts</div>
+<div class="ranking-card" [ngClass]="variant">
+    <div class="ranking-card-rank">#{{ rank }}</div>
+    @if (!isImageLoaded) {
+      <div class="skeleton-loader"></div>
+    }
+    <img
+        class="ranking-card-image"
+        [src]="imageUrl"
+        [alt]="label"
+        (load)="onImageLoad()"
+        [ngClass]="{ hidden: !isImageLoaded }"
+    />
+    <div class="ranking-card-label">{{ label }}</div>
+    <div class="ranking-card-score">Score: {{ score }} pts</div>
 </div>

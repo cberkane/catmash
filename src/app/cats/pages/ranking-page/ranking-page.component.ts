@@ -1,6 +1,6 @@
 import { NgClass, SlicePipe } from "@angular/common";
 import { Component, inject, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 
 import { RankingCardComponent } from "@src/app/cats/components/ranking-card/ranking-card.component";
 import { CatService } from "@src/app/cats/services/cat.service";
@@ -33,19 +33,22 @@ export class RankingPageComponent implements OnInit, OnDestroy {
     label: "Retourner au vote",
   };
 
-  private subscription = new Subscription();
+  private destroy$ = new Subject<void>();
 
   ngOnInit(): void {
     this.loadRanking();
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private loadRanking(): void {
     this.loading = true;
-    const sub = this.catService.getCatRanking$().subscribe({
+    this.catService.getCatRanking$()
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: (ranking) => {
         this.cats = ranking;
         this.loading = false;
@@ -57,6 +60,5 @@ export class RankingPageComponent implements OnInit, OnDestroy {
         else this.error = "An unexpected error occurred. Please try again later.";
       },
     });
-    this.subscription.add(sub);
   }
 }
