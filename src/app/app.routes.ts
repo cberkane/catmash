@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { VotingPageComponent } from "./cats/pages/voting-page/voting-page.component";
+import { RankingPageComponent } from "./cats/pages/ranking-page/ranking-page.component";
 
 export const routes: Routes = [
   {
@@ -13,7 +14,7 @@ export const routes: Routes = [
   },
   {
     path: "ranking",
-    loadComponent: () => import("./cats/pages/ranking-page/ranking-page.component").then((m) => m.RankingPageComponent),
+    component: RankingPageComponent,
   },
   {
     path: "**",
