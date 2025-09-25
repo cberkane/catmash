@@ -46,8 +46,8 @@ export class CatService {
     const unseenCats = this.getUnseenCats(cats, appearances);
     const leastAppearedCats = this.getLeastAppeared(unseenCats);
     if (leastAppearedCats.length < 2) {
-      const secondCat = unseenCats[Math.floor(Math.random() * unseenCats.length)];
-      return [leastAppearedCats[0], secondCat];
+      const rest = cats.filter(c => c.id !== leastAppearedCats[0].id);
+      return [leastAppearedCats[0], rest[Math.floor(Math.random() * rest.length)]];
     }
 
     leastAppearedCats.sort(() => Math.random() - 0.5);

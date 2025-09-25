@@ -107,7 +107,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         },
         "lint": {
