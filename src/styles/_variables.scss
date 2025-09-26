@@ -5,9 +5,14 @@ $font-family-base: "Nunito", sans-serif;
 $header-height: 70px;
 $container-width: 1200px;
 
+$screen-md: 780px;
+$screen-sm: 580px;
+$screen-xs: 440px;
+
 // Colors
 $color-bg: #fff;
 $color-bg-alt: #f7f7f7;
+$color-border: #e1e1e1;
 $color-primary: #133167;
 $color-primary-dark: #0f254e;
 $color-error: #ff4d4f;

@@ -9,7 +9,7 @@
     padding: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: $color-primary;
-    border: 1px solid $color-primary;
+    border: 1px solid $color-border;
     border-radius: 8px;
 
     .ranking-card-rank {
@@ -21,9 +21,6 @@
     &.second,
     &.third {
         color: #fff;
-        .ranking-card-image {
-            border-color: #fff;
-        }
     }
     &.first {
         min-height: 220px;
@@ -43,8 +40,8 @@
         aspect-ratio: 1 / 1;
         object-fit: cover;
 
-        border: 1px solid $color-primary;
-        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
 
         &.hidden {
             display: none;

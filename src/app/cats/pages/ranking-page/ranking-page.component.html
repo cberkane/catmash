@@ -1,7 +1,7 @@
-<app-state-wrapper [loading]="loading" [error]="error">
+<app-state-wrapper [loading]="loading" [error]="error" [empty]="!loading && !cats.length">
     <section class="page-container">
         <div class="page-content content">
-                @if (!loading && cats.length) {
+            @if (!loading && cats.length) {
                 <div class="top-ranking">
                     @for (cat of cats | slice:0:3; track cat.id; let i = $index) {
                     <app-ranking-card

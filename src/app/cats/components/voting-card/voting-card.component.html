@@ -5,7 +5,7 @@
     <img class="vote-card-image"
         [ngClass]="{ hidden: !isImageLoaded }"
         [src]="imageUrl"
-        alt="{{ label }}"
+        [alt]="label"
         (load)="onImageLoad()"
     />
     <span class="vote-card-label">{{ label }}</span>

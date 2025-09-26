@@ -1,4 +1,4 @@
-<app-state-wrapper [loading]="loading" [error]="error">
+<app-state-wrapper [loading]="loading" [error]="error" [empty]="!loading && (!cat1 && !cat2)">
     <section class="page-container">
         <div class="page-content content">
             @if (!loading && cat1 && cat2) {

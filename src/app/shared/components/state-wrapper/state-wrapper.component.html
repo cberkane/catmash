@@ -1,12 +1,22 @@
 @if (loading) {
-    <div class="loading-container">
-        <app-loading class="loading" size="2x" theme="dark" />
-    </div>
+    <section class="page-container">
+        <div class="page-content content loading">
+            <app-loading class="loading" size="2x" theme="dark" />
+        </div>
+    </section>
+} @else if (empty) {
+    <section class="page-container">
+        <div class="page-content content empty">
+            <h1>Aucun élément à afficher !</h1>
+        </div>
+    </section>
 } @else if (error) {
-    <div class="error-container">
-        <h1>Une erreur est survenue.</h1>
-        <p>{{ error }}</p>
-    </div>
+    <section class="page-container">
+        <div class="page-content content error">
+            <h1>Une erreur est survenue !</h1>
+            <p>{{ error }}</p>
+        </div>
+    </section>
 } @else {
     <ng-content></ng-content>
 }

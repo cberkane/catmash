@@ -1,3 +1,5 @@
+@import "_variables";
+
 /*!
  * Load Awesome v1.1.0 (http://github.danielcardoso.net/load-awesome/)
  * Copyright 2015 Daniel Cardoso <@DanielCardoso>
@@ -16,7 +18,7 @@
     color: #fff;
 }
 .la-ball-grid-pulse.la-dark {
-    color: #333;
+    color: $color-primary;
 }
 .la-ball-grid-pulse > div {
     display: inline-block;
@@ -142,13 +144,13 @@
     margin: 1px;
 }
 .la-ball-grid-pulse.la-2x {
-    width: 72px;
-    height: 72px;
+    width: 64px;
+    height: 64px;
 }
 .la-ball-grid-pulse.la-2x > div {
-    width: 16px;
-    height: 16px;
-    margin: 4px;
+    width: 14.222px;
+    height: 14.222px;
+    margin: 3.555px;
 }
 .la-ball-grid-pulse.la-3x {
     width: 108px;

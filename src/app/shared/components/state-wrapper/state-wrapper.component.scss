@@ -1,27 +1,24 @@
 @import "_variables";
 
-.loading-container,
-.error-container {
-    height: 80vh;
+.content {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.loading-container .loading {
-    display: block;
-    margin: 0 auto;
+.empty {
+    h1 {
+        color: $color-primary-dark;
+        text-align: center;
+        font-size: 28px;
+    }
 }
 
-.error-container {
-    flex-direction: column;
-    color: $color-error;
+.error {
+    h1,
+    p { color: $color-error; }
 
-    h1 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-    p {
-        font-size: 1rem;
-    }
+    h1 { font-size: 28px; }
+    p { font-size: 14px; }
 }

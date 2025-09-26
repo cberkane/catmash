@@ -10,5 +10,6 @@ import { LoadingComponent } from "../loading/loading.component";
 })
 export class StateWrapperComponent {
   @Input() loading: boolean;
+  @Input() empty: boolean;
   @Input() error: string | null;
 }

@@ -28,4 +28,12 @@
         font-size: 12px;
         font-weight: 400;
     }
+
+    @media (max-width: $screen-md) {
+        width: 50%;
+    }
+
+    @media (max-width: $screen-sm) {
+        width: 70%;
+    }
 }
